@@ -1,0 +1,36 @@
+# Render "Blueprint": creates the earshelf API service from this file. Secrets are entered in Render's dashboard.
+services:
+  - type: web
+    name: earshelf-api
+    runtime: docker
+    region: oregon
+    dockerfilePath: ./services/api/Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - { key: SUPABASE_URL, sync: false }
+      - { key: SUPABASE_PUBLISHABLE_KEY, sync: false }
+      - { key: SUPABASE_SECRET_KEY, sync: false }
+      - { key: ALLOWED_ORIGINS, sync: false }
+      - { key: LEMON_SQUEEZY_SIGNING_SECRET, sync: false }
+      - { key: LS_VARIANT_EARSHELF_PLUS, sync: false }
+      - { key: LS_VARIANT_EARSHELF_PRO, sync: false }
+      - { key: TTS_KOKORO_HOSTPORT, sync: false }
+      - { key: ELEVENLABS_API_KEY, sync: false }
+      - { key: ELEVENLABS_MODEL, sync: false }
+      - { key: ELEVENLABS_VOICE_IDS, sync: false }
+      - { key: ELEVENLABS_CONCURRENCY, sync: false }
+      - { key: EMBED_API_KEY, sync: false }
+      - { key: EMBED_BASE_URL, sync: false }
+      - { key: EMBED_MODEL, sync: false }
+      - { key: SENTRY_DSN, sync: false }
+      - { key: TTS_OPENAI_BASE_URL, sync: false }
+      - { key: TTS_OPENAI_API_KEY, sync: false }
+      - { key: TTS_OPENAI_MODEL, sync: false }
+      - { key: TTS_OPENAI_VOICES, sync: false }
+      - { key: EDGE_TTS_ENABLED, value: "false" }
+      - { key: EDGE_TTS_ALLOWED_USER_IDS, sync: false }
+      - { key: AI_PROVIDER, value: anthropic }
+      - { key: AI_API_KEY, sync: false }
+      - { key: AI_MODEL, value: claude-haiku-4-5-20251001 }

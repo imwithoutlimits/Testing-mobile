@@ -1,0 +1,26 @@
+# Netlify builds the app from GitHub. You never run npm yourself.
+[build]
+  command = "npm run build"
+  publish = "apps/earshelf/dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Single-page app: every path serves index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# The service worker must never be cached, or updates would not reach installed apps
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), geolocation=()"

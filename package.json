@@ -1,0 +1,21 @@
+{
+  "name": "wells",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "services/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @wells/earshelf",
+    "build": "npm run build -w @wells/earshelf",
+    "test": "node --test packages/core/src/*.test.ts packages/billing/src/*.test.ts packages/audio-player/src/*.test.ts services/api/src/*.test.ts services/api/src/*/*.test.ts",
+    "typecheck": "tsc -p tsconfig.base.json --noEmit && npm run typecheck -w @wells/earshelf"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "typescript": "^5.6.3"
+  }
+}

@@ -1,0 +1,14 @@
+# One-click Kokoro voice server (free, open voices). Deploy it as a SECOND Blueprint from this same repository,
+# in the same Render account and region as earshelf-api. It is private: only earshelf-api can reach it.
+# The image name and port come from the Kokoro-FastAPI project's documented defaults.
+services:
+  - type: pserv
+    name: kokoro-tts
+    runtime: image
+    image:
+      url: ghcr.io/remsky/kokoro-fastapi-cpu:latest
+    region: oregon
+    plan: standard          # about 2 GB of memory; raise it if the logs mention running out of memory
+    envVars:
+      - key: PORT
+        value: "8880"

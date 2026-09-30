@@ -1,0 +1,63 @@
+:root {
+  --color-background: #fbfaf7;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f3f1eb;
+  --color-text: #262522;
+  --color-text-muted: #746f66;
+  --color-border: #e5e1d8;
+  --color-primary: #315f72;
+  --color-primary-hover: #264b5b;
+  --color-accent: #c8874d;
+  --color-success: #5d8067;
+  --color-warning: #b8893e;
+  --color-danger: #b45b56;
+  --font-ui: "Inter Variable", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-reading: "Literata Variable", "Literata", "Source Serif 4", Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --radius-card: 12px;
+  --radius-panel: 16px;
+  --radius-pill: 999px;
+  --shadow-raised: 0 1px 2px rgba(38, 37, 34, 0.06), 0 4px 12px rgba(38, 37, 34, 0.05);
+}
+
+[data-app="earshelf"] {
+  --color-primary: #315f72;
+  --color-primary-hover: #264b5b;
+  --color-accent: #c8874d;
+}
+
+[data-app="tapestry"] {
+  --color-primary: #6c536c;
+  --color-primary-hover: #584258;
+  --color-accent: #c39562;
+  --color-background: #fbf8f2;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-background: #1a1917;
+    --color-surface: #23211e;
+    --color-surface-muted: #2c2925;
+    --color-text: #ece8df;
+    --color-text-muted: #a39d92;
+    --color-border: #3a3631;
+    --color-primary: #6fa3b8;
+    --color-primary-hover: #8bb7c9;
+    --color-accent: #d9a06a;
+  }
+}
+:root[data-theme="dark"] {
+  --color-background: #1a1917;
+  --color-surface: #23211e;
+  --color-surface-muted: #2c2925;
+  --color-text: #ece8df;
+  --color-text-muted: #a39d92;
+  --color-border: #3a3631;
+  --color-primary: #6fa3b8;
+  --color-primary-hover: #8bb7c9;
+  --color-accent: #d9a06a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

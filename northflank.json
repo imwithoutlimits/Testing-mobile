@@ -1,0 +1,67 @@
+{
+  "name": "earshelf-api",
+  "description": "Earshelf API backend service for voice synthesis, AI, and billing",
+  "services": [
+    {
+      "name": "earshelf-api",
+      "type": "combined",
+      "billing": {
+        "deploymentPlan": "nf-compute-micro"
+      },
+      "deployment": {
+        "instances": 1
+      },
+      "build": {
+        "buildType": "dockerfile",
+        "dockerfilePath": "services/api/Dockerfile",
+        "dockerContext": "."
+      },
+      "ports": [
+        {
+          "name": "http",
+          "privatePort": 8080,
+          "publicPort": 443,
+          "protocol": "HTTP",
+          "public": true
+        }
+      ],
+      "healthCheck": {
+        "path": "/health",
+        "port": 8080,
+        "protocol": "HTTP",
+        "initialDelay": 15,
+        "interval": 20,
+        "timeout": 5
+      },
+      "environment": {
+        "PORT": "8080",
+        "NODE_ENV": "production",
+        "SUPABASE_URL": "${SUPABASE_URL}",
+        "SUPABASE_PUBLISHABLE_KEY": "${SUPABASE_PUBLISHABLE_KEY}",
+        "SUPABASE_SECRET_KEY": "${SUPABASE_SECRET_KEY}",
+        "ALLOWED_ORIGINS": "${ALLOWED_ORIGINS}",
+        "LEMON_SQUEEZY_SIGNING_SECRET": "${LEMON_SQUEEZY_SIGNING_SECRET}",
+        "LS_VARIANT_EARSHELF_PLUS": "${LS_VARIANT_EARSHELF_PLUS}",
+        "LS_VARIANT_EARSHELF_PRO": "${LS_VARIANT_EARSHELF_PRO}",
+        "TTS_KOKORO_HOSTPORT": "${TTS_KOKORO_HOSTPORT}",
+        "ELEVENLABS_API_KEY": "${ELEVENLABS_API_KEY}",
+        "ELEVENLABS_MODEL": "${ELEVENLABS_MODEL}",
+        "ELEVENLABS_VOICE_IDS": "${ELEVENLABS_VOICE_IDS}",
+        "ELEVENLABS_CONCURRENCY": "${ELEVENLABS_CONCURRENCY}",
+        "EMBED_API_KEY": "${EMBED_API_KEY}",
+        "EMBED_BASE_URL": "${EMBED_BASE_URL}",
+        "EMBED_MODEL": "${EMBED_MODEL}",
+        "SENTRY_DSN": "${SENTRY_DSN}",
+        "TTS_OPENAI_BASE_URL": "${TTS_OPENAI_BASE_URL}",
+        "TTS_OPENAI_API_KEY": "${TTS_OPENAI_API_KEY}",
+        "TTS_OPENAI_MODEL": "${TTS_OPENAI_MODEL}",
+        "TTS_OPENAI_VOICES": "${TTS_OPENAI_VOICES}",
+        "EDGE_TTS_ENABLED": "false",
+        "EDGE_TTS_ALLOWED_USER_IDS": "${EDGE_TTS_ALLOWED_USER_IDS}",
+        "AI_PROVIDER": "anthropic",
+        "AI_API_KEY": "${AI_API_KEY}",
+        "AI_MODEL": "claude-haiku-4-5-20251001"
+      }
+    }
+  ]
+}
